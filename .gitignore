@@ -3,6 +3,7 @@ outputs/
 models/
 logs/
 __pycache__/
+pytorch/
 core
 
 # Compiled source #
