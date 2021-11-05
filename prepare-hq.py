@@ -1,4 +1,5 @@
 import os
+from multiprocessing import Pool
 
 # You only need to change this line to your dataset download path
 download_path = '../Market'
@@ -6,9 +7,10 @@ download_path = '../Market'
 if not os.path.isdir(download_path):
     print('please change the download_path')
 
-save_path = '../Market-hq'
+save_path = '../Market/hq'
 if not os.path.isdir(save_path):
     os.mkdir(save_path)
+    os.mkdir(save_path+'/pytorch')
 #-----------------------------------------
 #query
 query_path = download_path + '/query'
@@ -16,6 +18,11 @@ query_save_path = save_path + '/pytorch/query'
 if not os.path.isdir(query_save_path):
     os.mkdir(query_save_path)
 
+def save(command):
+    os.system(command)
+
+save_command = []
+ 
 for root, dirs, files in os.walk(query_path, topdown=True):
     for name in files:
         if not name[-3:]=='jpg':
@@ -25,7 +32,8 @@ for root, dirs, files in os.walk(query_path, topdown=True):
         dst_path = query_save_path + '/' + ID[0] 
         if not os.path.isdir(dst_path):
             os.mkdir(dst_path)
-        os.system('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
+        #os.system('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
+        save_command.append('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
 
 #-----------------------------------------
 #multi-query
@@ -45,7 +53,8 @@ if os.path.isdir(query_path):
             dst_path = query_save_path + '/' + ID[0]
             if not os.path.isdir(dst_path):
                 os.mkdir(dst_path)
-            os.system('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
+            #os.system('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
+            save_command.append('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
 
 #-----------------------------------------
 #gallery
@@ -63,7 +72,8 @@ for root, dirs, files in os.walk(gallery_path, topdown=True):
         dst_path = gallery_save_path + '/' + ID[0]
         if not os.path.isdir(dst_path):
             os.mkdir(dst_path)
-        os.system('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
+        #os.system('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
+        save_command.append('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
 
 #---------------------------------------
 #train_all
@@ -81,8 +91,8 @@ for root, dirs, files in os.walk(train_path, topdown=True):
         dst_path = train_save_path + '/' + ID[0]
         if not os.path.isdir(dst_path):
             os.mkdir(dst_path)
-        os.system('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
-
+        #os.system('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
+        save_command.append('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
 #---------------------------------------
 #train_val
 train_path = download_path + '/bounding_box_train'
@@ -103,4 +113,8 @@ for root, dirs, files in os.walk(train_path, topdown=True):
             os.mkdir(dst_path)
             dst_path = val_save_path + '/' + ID[0]  #first image is used as val image
             os.mkdir(dst_path)
-        os.system('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
+        #os.system('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
+        save_command.append('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
+
+with Pool(8) as p:
+    p.map(save, save_command )
