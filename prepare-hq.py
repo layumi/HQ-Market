@@ -33,7 +33,7 @@ for root, dirs, files in os.walk(query_path, topdown=True):
         if not os.path.isdir(dst_path):
             os.mkdir(dst_path)
         #os.system('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
-        save_command.append('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
+        save_command.append('realesrgan-ncnn-vulkan -i %s -o %s.png'%(src_path, dst_path + '/' + name))
 
 #-----------------------------------------
 #multi-query
@@ -54,7 +54,7 @@ if os.path.isdir(query_path):
             if not os.path.isdir(dst_path):
                 os.mkdir(dst_path)
             #os.system('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
-            save_command.append('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
+            save_command.append('realesrgan-ncnn-vulkan -i %s -o %s.png'%(src_path, dst_path + '/' + name))
 
 #-----------------------------------------
 #gallery
@@ -73,7 +73,7 @@ for root, dirs, files in os.walk(gallery_path, topdown=True):
         if not os.path.isdir(dst_path):
             os.mkdir(dst_path)
         #os.system('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
-        save_command.append('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
+        save_command.append('realesrgan-ncnn-vulkan -i %s -o %s.png'%(src_path, dst_path + '/' + name))
 
 #---------------------------------------
 #train_all
@@ -92,7 +92,7 @@ for root, dirs, files in os.walk(train_path, topdown=True):
         if not os.path.isdir(dst_path):
             os.mkdir(dst_path)
         #os.system('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
-        save_command.append('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
+        save_command.append('realesrgan-ncnn-vulkan -i %s -o %s.png'%(src_path, dst_path + '/' + name))
 #---------------------------------------
 #train_val
 train_path = download_path + '/bounding_box_train'
@@ -114,7 +114,7 @@ for root, dirs, files in os.walk(train_path, topdown=True):
             dst_path = val_save_path + '/' + ID[0]  #first image is used as val image
             os.mkdir(dst_path)
         #os.system('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
-        save_command.append('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
+        save_command.append('realesrgan-ncnn-vulkan -i %s -o %s.png'%(src_path, dst_path + '/' + name))
 
 with Pool(8) as p:
     p.map(save, save_command )
