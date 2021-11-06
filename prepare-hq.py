@@ -19,7 +19,7 @@ if not os.path.isdir(query_save_path):
     os.mkdir(query_save_path)
 
 def save(command):
-    os.system(command)
+    os.system('./'+command+' -g 2')
 
 save_command = []
  
@@ -116,5 +116,10 @@ for root, dirs, files in os.walk(train_path, topdown=True):
         #os.system('jpeg2png %s -o %s.png'%(src_path, dst_path + '/' + name))
         save_command.append('realesrgan-ncnn-vulkan -i %s -o %s.png'%(src_path, dst_path + '/' + name))
 
-with Pool(8) as p:
-    p.map(save, save_command )
+a = save_command[0:len(save_command)//3]
+b = save_command[len(save_command)//3:2*len(save_command)//3]
+c = save_command[2*len(save_command)//3:-1]
+for comm in c:
+    save(comm)
+#with Pool(8) as p:
+#   p.map(save, save_command )
