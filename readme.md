@@ -38,6 +38,14 @@ python prepare-hq.py
 Please cite this paper if it helps your research:
 
 ```bibtex
+
+@InProceedings{wang2021realesrgan,
+    author    = {Xintao Wang and Liangbin Xie and Chao Dong and Ying Shan},
+    title     = {Real-ESRGAN: Training Real-World Blind Super-Resolution with Pure Synthetic Data},
+    booktitle = {International Conference on Computer Vision Workshops (ICCVW)},
+    date      = {2021}
+}
+
 @article{zheng20223d,
   title={3D Magic Mirror: Clothing Reconstruction from a Single Image via a Causal Perspective},
   author={Zheng, Zhedong and Zhu, Jiayin and Ji, Wei and Yang, Yi and Chua, Tat-Seng},
