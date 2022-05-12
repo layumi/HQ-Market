@@ -4,16 +4,7 @@ We enlarge the Market-1501 from 128x64 to 512x256  for 3D Mesh Generation.
 Here we provide a brief script for quick converting. 
 
 
-## Dependency: 
-
-1. de-jpeg compression (We do not use it in practice, but it works in some general cases.)
-https://github.com/victorvde/jpeg2png 
-
-
-2. super-resolution
-https://github.com/xinntao/Real-ESRGAN 
-
-## Download the dataset:
+## Download the super-resolution dataset:
 
 - Market-HQ
 
@@ -24,6 +15,18 @@ gdrive download 10gNi3n8Iny4O4MOZRs5dNFICfj8ri9eW
 ```
 
 ## Generat data by yourself: 
+
+### Dependency: 
+
+1. de-jpeg compression (We do not use it in practice, but it works in some general cases.)
+https://github.com/victorvde/jpeg2png 
+
+
+2. super-resolution
+https://github.com/xinntao/Real-ESRGAN 
+
+
+### Generation: 
 
 Please modify the dataset root before running. 
 ```
