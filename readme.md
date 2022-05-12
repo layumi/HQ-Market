@@ -39,6 +39,13 @@ Please cite this paper if it helps your research:
 
 ```bibtex
 
+@inproceedings{zheng2015scalable,
+  title={Scalable Person Re-identification: A Benchmark},
+  author={Zheng, Liang and Shen, Liyue and Tian, Lu and Wang, Shengjin and Wang, Jingdong and Tian, Qi},
+  booktitle={Computer Vision, IEEE International Conference on},
+  year={2015}
+}
+
 @InProceedings{wang2021realesrgan,
     author    = {Xintao Wang and Liangbin Xie and Chao Dong and Ying Shan},
     title     = {Real-ESRGAN: Training Real-World Blind Super-Resolution with Pure Synthetic Data},
@@ -52,4 +59,6 @@ Please cite this paper if it helps your research:
   journal={arXiv preprint arXiv:2204.13096},
   year={2022}
 }
+
+
 ```
