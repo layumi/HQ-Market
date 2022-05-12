@@ -3,7 +3,7 @@
 We enlarge the Market-1501 from 128x64 to 512x256  for 3D Mesh Generation. 
 Here we provide a brief bash for quick converting. 
 
-1. de-jpeg compression
+1. de-jpeg compression (We do not use in practice, but it works in some general cases.)
 https://github.com/victorvde/jpeg2png
 
 
